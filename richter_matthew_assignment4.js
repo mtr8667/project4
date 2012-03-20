@@ -1,7 +1,7 @@
 // SDI 1203 - Project 4
 // March 19, 2012
 // Matthew Richter
-
+var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
 var matthewLib 	= function(){
 	// private methods
@@ -39,8 +39,9 @@ var matthewLib 	= function(){
 		arrayObjects:		[]
 	};
 };
-var lib = matthewLib();
-matthewLib.checkPhone("number");
-var email = matthewLib.email("matt@gorichter.com");
-var webAddress = matthewLib.webAddress("http://bbtmobi.com");
-output(lib);
+//var lib = matthewLib();
+var phone = matthewLib();
+phone.checkPhone("number");
+//var email = matthewLib.email("matt@gorichter.com");
+//var webAddress = matthewLib.webAddress("http://bbtmobi.com");
+output(phone);
