@@ -8,7 +8,7 @@ var mattLib 	= function(){
 	var testNumber = number,
 		regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
 		numberResult = (regexObj.test(testNumber));
-		output(numberResult);
+		//output(numberResult);
 		return numberResult;
 	};
 	checkNumber();
@@ -16,20 +16,18 @@ var mattLib 	= function(){
    	var testEmail = email,
    		regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
    		emailResult = (regexObj.test(email));
-		output(emailResult);
+		//output(emailResult);
 		return emailResult;
 	};
+	checkEmail();
 	var checkUrl = function (url) {
 	var urlTest = url,
 		regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
 		urlResult = (regexObj.test(url));
-		output(urlResult);
+		//output(urlResult);
 		return urlResult;
 	};
-
-	var getNumber     			= function () { return checkNumber.numberResult;};
-	var checkEmail 				= function () {};
-	var checkUrl 				= function () {};
+	checkUrl();
 	var checkTitleCase			= function () {};
 	var checkStringSeperator	= function () {};
 	var checkMoney				= function () {};
@@ -40,9 +38,9 @@ var mattLib 	= function(){
 	var checkTotalArray			= function () {};
 	var checkArrayObjects		= function () {};
 	return {
-		checkNumber:				getNumber,
-		checkEmail:					checkEmail,
-		checkUrl:					checkUrl,
+		getNumber:					checkNumber,
+		getEmail:					checkEmail,
+		getUrl:						checkUrl,
 		checkTitleCase:				"",
 		checkStringSeperator:		"",
 		checkMoney:					0,
@@ -57,12 +55,20 @@ var mattLib 	= function(){
 
 
 var resultMattLib = mattLib();
-resultMattLib.checkNumber(34534225434);
-resultMattLib.checkEmail("matt@gorichter.com");
-resultMattLib.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
+resultMattLib.getNumber(34534225434);
+resultMattLib.getEmail("matt@gorichter.com");
+resultMattLib.getUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
 output(resultMattLib);
-output(resultMattLib.checkNumber());
+output(resultMattLib.getNumber());
+output(resultMattLib.getEmail());
+output(resultMattLib.getUrl());
 
+
+
+
+
+
+/*
 //var lib = matthewLib();
 //var email = matthewLib.email("matt@gorichter.com");
 //var webAddress = matthewLib.webAddress("http://bbtmobi.com");
@@ -156,9 +162,11 @@ var feedPirate = function (pirateName, food) {
 };
 
 feedPirate("Matt the Merciless!", " sushi");
+
+
 //output("Boy " + pirateName + " eats a lot of" + food);
 
-/*
+
 ^        # Assert position at the beginning of the string.
 \(       # Match a literal "("...
   ?      #   between zero and one time.
