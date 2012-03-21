@@ -3,6 +3,34 @@
 // Matthew Richter
 var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
+
+var mattLib = function() {
+	return {
+	checkNumber:		function (testNumber) {
+							var testNumber = testNumber,
+								regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+								numberResult = (regexObj.test(testNumber));
+								output("Number valid? " + numberResult);
+							},
+	checkEmail:			function (testEmail) {  
+   							var testEmail = testEmail,
+   							regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
+   							emailResult = (regexObj.test(testEmail));
+   								output("Email valid? " + emailResult);
+   							},
+   	checkUrl:			function (testUrl) {
+							var urlTest = testUrl,
+							regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+							urlResult = (regexObj.test(testUrl));
+								output("URL valid? " + urlResult);
+							}
+	};
+};
+var results = mattLib();
+results.checkNumber("87446435475")
+results.checkEmail("matt@gorichter.com")
+results.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
+/*
 var mattLib 	= function(){
 	var checkNumber = function (number) {
 	var testNumber = number,
@@ -63,7 +91,7 @@ output(resultMattLib.getNumber());
 output(resultMattLib.getEmail());
 output(resultMattLib.getUrl());
 
-
+*/
 
 
 
