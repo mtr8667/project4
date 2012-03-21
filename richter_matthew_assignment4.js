@@ -3,6 +3,18 @@
 // Matthew Richter
 var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
+/*
+---online JavaScript help references---
+checkNumber 
+http://blog.stevenlevithan.com/archives/validate-phone-number
+
+checkEmail
+http://www.zparacha.com/validate-email-address-using-javascript-regular-expression/#.T2k3n47mb5I 
+
+checkUrl
+http://snippets.dzone.com/posts/show/452
+
+*/
 
 var mattLib = function() {
 	return {
@@ -28,8 +40,8 @@ var mattLib = function() {
 };
 var results = mattLib();
 results.checkNumber("87446435475")
-results.checkEmail("matt@gorichter.com")
-results.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
+results.checkEmail("@matt@gorichter.com")
+results.checkUrl("pgghttp://www.w3schools.com/jsref/jsref_obj_regexp.asp");// currently this regexObj needs tweaking - i t's not working 
 /*
 var mattLib 	= function(){
 	var checkNumber = function (number) {
