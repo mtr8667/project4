@@ -55,6 +55,7 @@ var mattLib 	= function(){
 var resultMattLib = mattLib();
 resultMattLib.checkNumber(34534225434);
 output(resultMattLib);
+output(resultMattLib.checkNumber());
 
 //var lib = matthewLib();
 //var email = matthewLib.email("matt@gorichter.com");
