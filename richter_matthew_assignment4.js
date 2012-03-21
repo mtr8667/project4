@@ -8,22 +8,25 @@ var mattLib 	= function(){
 	var testNumber = number,
 		regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
 		numberResult = (regexObj.test(testNumber));
+		output(numberResult);
 		return numberResult;
 	};
 	var checkEmail = function (email) {  
    	var testEmail = email,
    		regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
    		emailResult = (regexObj.test(email));
+		output(emailResult);
 		return emailResult;
 	};
 	var checkUrl = function (url) {
 	var urlTest = url,
 		regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
 		urlResult = (regexObj.test(url));
+		output(urlResult);
 		return	urlResult;
 	};
 
-	var getNumber     			= function () { return checkNumber;};
+	var getNumber     			= function () { return checkNumber.numberResult;};
 	var checkEmail 				= function () {};
 	var checkUrl 				= function () {};
 	var checkTitleCase			= function () {};
@@ -54,6 +57,8 @@ var mattLib 	= function(){
 
 var resultMattLib = mattLib();
 resultMattLib.checkNumber(34534225434);
+resultMattLib.checkEmail("matt@gorichter.com");
+resultMattLib.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
 output(resultMattLib);
 output(resultMattLib.checkNumber());
 
@@ -107,14 +112,23 @@ output(urlTest);
 var pirateShip = function (name){
 	var cargoHold = [];
 	var cargoLoad = function (item) {
-		cargoHold.push(item);
+		if (item !== "elephants") {
+			cargoHold.push(item);
+		} else {
+			output("Not allowed!");
+		}
 	
+	};
+	var cargoList = function () {
+		for ( var n = 0; n < cargoHold.length; n++) {
+		output(name + "cargo " + n + ":" + cargoHold[n] + ".");
+		}
 	
 	};
 	return {
 		name:		name,
-		hold:		cargoHold,
-		cargoLoad:	cargoLoad
+		cargoLoad:	cargoLoad,
+		cargoList:	cargoList
 	
 	
 	};
@@ -122,10 +136,10 @@ var pirateShip = function (name){
 };
 
 var marauder = pirateShip("Matt the Merciless");
-
-
-
-
+marauder.cargoLoad("food");
+marauder.cargoLoad("drink");
+output(marauder);
+marauder.cargoList();
 
 
 
