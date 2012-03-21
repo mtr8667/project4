@@ -3,82 +3,71 @@
 // Matthew Richter
 var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
-var matthewLib 	= function(){
-	// private methods
-	var phoneNumber = "";
-	var checkPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-		if (checkPhone.test(input)) {
-    var test =
-        subjectString.replace(regexObj, "($1) $2-$3");
-        phoneNumber.push(test);
-			} else {
-    		test = "Invalid phone number";
-    		phoneNumber.push(test);
-
-}
-
-/*
-var regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-if (regexObj.test(subjectString)) {
-    var formattedPhoneNumber =
-        subjectString.replace(regexObj, "($1) $2-$3");
-} else {
-    // Invalid phone number
-}
-
-
-*/
-	
+var mattLib 	= function(){
+	var checkNumber = function (number) {
+	var testNumber = number,
+		regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+		numberResult = (regexObj.test(testNumber));
+		return numberResult;
 	};
-		
-	var eamil,
-		webAddress;
-	// public methods	
-	var email 			= function(){};
-	var webAddress 		= function(){};
-	var titleCase		= function(){};
-	var stringSeperator	= function(){};
-	var money			= function(){};
-	var fuzzyMatch		= function(){};
-	var differenceDays	= function(){};
-	var stringNumber	= function(){};
-	var smallBigArray	= function(){};
-	var totalArray		= function(){};
-	var arrayObjects	= function(){};
+	var checkEmail = function (email) {  
+   	var testEmail = email,
+   		regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
+   		emailResult = (regexObj.test(email));
+		return emailResult;
+	};
+	var checkUrl = function (url) {
+	var urlTest = url,
+		regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+		urlResult = (regexObj.test(url));
+		return	urlResult;
+	};
+
+	var getNumber     			= function () { return checkNumber;};
+	var checkEmail 				= function () {};
+	var checkUrl 				= function () {};
+	var checkTitleCase			= function () {};
+	var checkStringSeperator	= function () {};
+	var checkMoney				= function () {};
+	var checkFuzzyMatch			= function () {};
+	var checkDifferenceDays		= function () {};
+	var checkStringNumber		= function () {};
+	var checkSmallBigArray		= function () {};
+	var checkTotalArray			= function () {};
+	var checkArrayObjects		= function () {};
 	return {
-		phoneNumber:		phoneNumber,
-		checkPhone:			checkPhone,
-		email:				email,
-		webAddress:			webAddress,
-		titleCase:			"",
-		stringSeperator:	"",
-		money:				0,
-		fuzztMatch:			0,
-		differenceDays:		0,
-		stringNumber:		0,
-		smallBigArray:		0,
-		totalArray:			0,
-		arrayObjects:		[]
+		checkNumber:				getNumber,
+		checkEmail:					checkEmail,
+		checkUrl:					checkUrl,
+		checkTitleCase:				"",
+		checkStringSeperator:		"",
+		checkMoney:					0,
+		checkFuzzyMatch:			0,
+		checkDifferenceDays:		0,
+		checkStringNumber:			0,
+		checkSmallBigArray:			0,
+		checkTotalArray:			0,
+		checkArrayObjects:			[]
 	};
 };
+
+
+var resultMattLib = mattLib();
+resultMattLib.checkNumber(34534225434);
+output(resultMattLib);
+
 //var lib = matthewLib();
-var phone = matthewLib();
-phone.checkPhone.test(345-342-5434);
 //var email = matthewLib.email("matt@gorichter.com");
 //var webAddress = matthewLib.webAddress("http://bbtmobi.com");
-output(phone.phoneNumber);
+
 
 // this is the JavaScript that I found at http://blog.stevenlevithan.com/archives/validate-phone-number to help me with my phone constructor
 var checkNumber = function (number) {
 	var testNumber = number,
 		regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
 		result = (regexObj.test(testNumber));
-
-
 	return {
 		result:		result
-	
 	};
 };
 
@@ -114,7 +103,24 @@ var urlTest = checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");
 output(urlTest);
 
 
+var pirateShip = function (name){
+	var cargoHold = [];
+	var cargoLoad = function (item) {
+		cargoHold.push(item);
+	
+	
+	};
+	return {
+		name:		name,
+		hold:		cargoHold,
+		cargoLoad:	cargoLoad
+	
+	
+	};
 
+};
+
+var marauder = pirateShip("Matt the Merciless");
 
 
 
