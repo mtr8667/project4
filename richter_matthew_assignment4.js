@@ -11,6 +11,7 @@ var mattLib 	= function(){
 		output(numberResult);
 		return numberResult;
 	};
+	checkNumber();
 	var checkEmail = function (email) {  
    	var testEmail = email,
    		regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
@@ -23,7 +24,7 @@ var mattLib 	= function(){
 		regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
 		urlResult = (regexObj.test(url));
 		output(urlResult);
-		return	urlResult;
+		return urlResult;
 	};
 
 	var getNumber     			= function () { return checkNumber.numberResult;};
@@ -125,8 +126,9 @@ var pirateShip = function (name){
 		}
 	
 	};
+	var getName = function () {return name;};
 	return {
-		name:		name,
+		name:		getName,
 		cargoLoad:	cargoLoad,
 		cargoList:	cargoList
 	
@@ -142,11 +144,35 @@ output(marauder);
 marauder.cargoList();
 
 
+var feedPirate = function (pirateName, food) {
+	output("Gave some " + food + " to the pirate " + pirateName);
+	var feedMonkey = function (monkeyName, food) {
+		output("Gave some " + food + " to " + monkeyName);
+	};
+	feedMonkey("Baron", "dried beef");
+	feedMonkey("Bernie", "soy beans");
+	
+	output("Boy " + pirateName + " eats a lot of" + food);
+};
 
+feedPirate("Matt the Merciless!", " sushi");
+//output("Boy " + pirateName + " eats a lot of" + food);
 
-
-
-
+/*
+^        # Assert position at the beginning of the string.
+\(       # Match a literal "("...
+  ?      #   between zero and one time.
+(        # Capture the enclosed match to backreference 1...
+  [0-9]  #   Match a digit...
+    {3}  #     exactly three times.
+)        # End capturing group 1.
+\)       # Match a literal ")"...
+  ?      #   between zero and one time.
+[-. ]    # Match one character from the set "-. "...
+  ?      #   between zero and one time.
+⋯        # [Match the remaining digits and separator.]
+$        # Assert position at the end of the string.
+*/
 
 
 
