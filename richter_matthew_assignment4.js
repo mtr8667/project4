@@ -5,6 +5,9 @@ var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
 /*
 ---online JavaScript help references---
+module pattern
+http://www.codeproject.com/Articles/247241/Javascript-Module-Pattern & Lyndon Modomo
+
 checkNumber 
 http://blog.stevenlevithan.com/archives/validate-phone-number
 
@@ -14,19 +17,37 @@ http://www.zparacha.com/validate-email-address-using-javascript-regular-expressi
 checkUrl
 http://snippets.dzone.com/posts/show/452
 
+rplaceChar
+http://www.w3schools.com/jsref/jsref_replace.asp
+
+fixedDecimal
+http://www.w3schools.com/jsref/jsref_tofixed.asp
+
+sortArrayObj
+http://www.javascriptkit.com/javatutors/arraysort2.shtml
+
 */
 var validationLibrary = (function() {
 	var validatePhoneNumber 	= function (testNumber) {
 		var regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 		return (regexObj.test(testNumber));
 	};
-	var validateEmail 			= function (testEmail) {
+	var validateEmail 			= function (testEmail) { 
 		var regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
    		return (regexObj.test(testEmail));
 	};
 	var validateUrl 			= function (testUrl) {
-		var regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		var regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;           
 		return (regexObj.test(testUrl));
+	};
+	var replacingChar				= function (string,oldChar,newChar) {
+		var myString = string,
+			old = new RegExp(oldChar, "g");
+			return (myString.replace(old, newChar));
+	};
+	var fixingDecimal = function (number) {
+		var newNumber;
+		return (newNumber = number.toFixed(2));
 	};
 	return {
 		checkPhoneNumber:	function (testNumber) {
@@ -37,13 +58,24 @@ var validationLibrary = (function() {
    		},
    		checkUrl:			function (testUrl) {
 								output("Is the URL " + testUrl + " valid? " + validateUrl (testUrl));
+		},
+		replaceChar:		function (string,oldChar,newChar) {
+								output(string + " is now " + replacingChar (string,oldChar,newChar));
+		},
+		fixedDecimal:		function (number) {
+								output(number + " has been changed to " + fixingDecimal(number));
 		}
 	};
 })();
+validationLibrary.checkPhoneNumber("874-643-5475");
+validationLibrary.checkEmail("aaa@bbb.ccc");
+validationLibrary.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp")
+validationLibrary.replaceChar("aaa@bbb@ccc@ddd@eee@fff","@",",");
+validationLibrary.fixedDecimal(9);
 
-validationLibrary.checkPhoneNumber("8746435475");
-validationLibrary.checkEmail("matt@gorichter.com");
-validationLibrary.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");// currently this regexObj needs tweaking - i t's not working 
+
+
+;// currently this regexObj needs tweaking - i t's not working 
 /*
 var mattLib 	= function(){
 	var checkNumber = function (number) {
@@ -223,7 +255,7 @@ feedPirate("Matt the Merciless!", " sushi");
 ⋯        # [Match the remaining digits and separator.]
 $        # Assert position at the end of the string.
 */
-
+// help from Lyndon below
 /* Comment:  
 
 */
@@ -251,7 +283,7 @@ var validationLibrary = (function(){
 // MAIN BODY    
 validationLibrary.checkPhoneNumber("123-456-7890");
 
-
+//http://www.codeproject.com/Articles/247241/Javascript-Module-Pattern
 //One Global object exposed. 
 var SearchEngine = (function ( ) { 
     //Private Method.
