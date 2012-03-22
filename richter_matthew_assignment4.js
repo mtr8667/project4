@@ -4,74 +4,94 @@
 var output = function(message){ console.log (message);};
 // Matthew's module-pattern library
 /*
----online JavaScript help references---
+---JavaScript help references---
 module pattern
 http://www.codeproject.com/Articles/247241/Javascript-Module-Pattern & Lyndon Modomo
 
-checkNumber 
+getCheckPhoneNumber 
 http://blog.stevenlevithan.com/archives/validate-phone-number
 
-checkEmail
+getCheckEmail
 http://www.zparacha.com/validate-email-address-using-javascript-regular-expression/#.T2k3n47mb5I 
 
-checkUrl
+getCheckUrl
 http://snippets.dzone.com/posts/show/452
 
-rplaceChar
+getReplaceChar
 http://www.w3schools.com/jsref/jsref_replace.asp
-
-fixedDecimal
-http://www.w3schools.com/jsref/jsref_tofixed.asp
 
 sortArrayObj
 http://www.javascriptkit.com/javatutors/arraysort2.shtml
 
+getFixedDecimal
+http://www.w3schools.com/jsref/jsref_tofixed.asp
+
+getParseNumber
+http://wap.w3schools.com/jsref/jsref_parseint.asp
+
+getTitleCase
+http://stackoverflow.com/questions/196972/convert-string-to-proper-case-with-javascript
 */
 var validationLibrary = (function() {
-	var validatePhoneNumber 	= function (testNumber) {
+	var toValidatePhoneNumber 	= function (testNumber) {
 		var regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 		return (regexObj.test(testNumber));
 	};
-	var validateEmail 			= function (testEmail) { 
+	var toValidateEmail 			= function (testEmail) { 
 		var regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
    		return (regexObj.test(testEmail));
 	};
-	var validateUrl 			= function (testUrl) {
+	var toValidateUrl 			= function (testUrl) {
 		var regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;           
 		return (regexObj.test(testUrl));
 	};
-	var replacingChar				= function (string,oldChar,newChar) {
+	var toReplaceChar				= function (string,oldChar,newChar) {
 		var myString = string,
 			old = new RegExp(oldChar, "g");
 			return (myString.replace(old, newChar));
 	};
-	var fixingDecimal = function (number) {
+	var toFixDecimal = function (number) {
 		var newNumber;
 		return (newNumber = number.toFixed(2));
 	};
+	var toParseNumber = function (value) {
+		var value = parseInt(value);
+		return value;
+	};
+	var toTitleCase 			= function (string) {
+    	return string.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	};
 	return {
-		checkPhoneNumber:	function (testNumber) {
-								output("Is the phone number " + testNumber + " valid? " + validatePhoneNumber (testNumber));
+		getCheckPhoneNumber:	function (testNumber) {
+								output("Is the phone number " + testNumber + " valid? " + toValidatePhoneNumber (testNumber));
 		},
-		checkEmail:			function (testEmail) {  
-   								output("Is the email address " + testEmail + " valid? " + validateEmail (testEmail));
+		getCheckEmail:			function (testEmail) {  
+   								output("Is the email address " + testEmail + " valid? " + toValidateEmail (testEmail));
    		},
-   		checkUrl:			function (testUrl) {
-								output("Is the URL " + testUrl + " valid? " + validateUrl (testUrl));
+   		getCheckUrl:			function (testUrl) {
+								output("Is the URL " + testUrl + " valid? " + toValidateUrl (testUrl));
 		},
-		replaceChar:		function (string,oldChar,newChar) {
-								output(string + " is now " + replacingChar (string,oldChar,newChar));
+		getReplaceChar:		function (string,oldChar,newChar) {
+								output(string + " is now " + toReplaceChar (string,oldChar,newChar));
 		},
-		fixedDecimal:		function (number) {
-								output(number + " has been changed to " + fixingDecimal(number));
+		getFixedDecimal:		function (number) {
+								output(number + " has been changed to " + toFixDecimal(number));
+		},
+		getParseNumber:		function (value) {
+								output(value + " has been changed to " + toParseNumber(value));
+		},
+		getTitleCase:		function (string) {
+								output(string + " has been changed to " + toTitleCase(string));
 		}
 	};
 })();
-validationLibrary.checkPhoneNumber("874-643-5475");
-validationLibrary.checkEmail("aaa@bbb.ccc");
-validationLibrary.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp")
-validationLibrary.replaceChar("aaa@bbb@ccc@ddd@eee@fff","@",",");
-validationLibrary.fixedDecimal(9);
+validationLibrary.getCheckPhoneNumber("874-643-5475");
+validationLibrary.getCheckEmail("aaa@bbb.ccc");
+validationLibrary.getCheckUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp")
+validationLibrary.getReplaceChar("aaa@bbb@ccc@ddd@eee@fff","@",",");
+validationLibrary.getFixedDecimal(9);
+validationLibrary.getParseNumber("67 years old");
+validationLibrary.getTitleCase("Now is the time to code your brains out!");
 
 
 
