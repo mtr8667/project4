@@ -15,33 +15,35 @@ checkUrl
 http://snippets.dzone.com/posts/show/452
 
 */
-
-var mattLib = function() {
-	return {
-	checkNumber:		function (testNumber) {
-							var testNumber = testNumber,
-								regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-								numberResult = (regexObj.test(testNumber));
-								output("Number valid? " + numberResult);
-							},
-	checkEmail:			function (testEmail) {  
-   							var testEmail = testEmail,
-   							regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
-   							emailResult = (regexObj.test(testEmail));
-   								output("Email valid? " + emailResult);
-   							},
-   	checkUrl:			function (testUrl) {
-							var urlTest = testUrl,
-							regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
-							urlResult = (regexObj.test(testUrl));
-								output("URL valid? " + urlResult);
-							}
+var validationLibrary = (function() {
+	var validatePhoneNumber 	= function (testNumber) {
+		var regexObj = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		return (regexObj.test(testNumber));
 	};
-};
-var results = mattLib();
-results.checkNumber("87446435475")
-results.checkEmail("@matt@gorichter.com")
-results.checkUrl("pgghttp://www.w3schools.com/jsref/jsref_obj_regexp.asp");// currently this regexObj needs tweaking - i t's not working 
+	var validateEmail 			= function (testEmail) {
+		var regexObj = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
+   		return (regexObj.test(testEmail));
+	};
+	var validateUrl 			= function (testUrl) {
+		var regexObj = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		return (regexObj.test(testUrl));
+	};
+	return {
+		checkPhoneNumber:	function (testNumber) {
+								output("Is the phone number " + testNumber + " valid? " + validatePhoneNumber (testNumber));
+		},
+		checkEmail:			function (testEmail) {  
+   								output("Is the email address " + testEmail + " valid? " + validateEmail (testEmail));
+   		},
+   		checkUrl:			function (testUrl) {
+								output("Is the URL " + testUrl + " valid? " + validateUrl (testUrl));
+		}
+	};
+})();
+
+validationLibrary.checkPhoneNumber("8746435475");
+validationLibrary.checkEmail("matt@gorichter.com");
+validationLibrary.checkUrl("http://www.w3schools.com/jsref/jsref_obj_regexp.asp");// currently this regexObj needs tweaking - i t's not working 
 /*
 var mattLib 	= function(){
 	var checkNumber = function (number) {
@@ -222,6 +224,53 @@ feedPirate("Matt the Merciless!", " sushi");
 $        # Assert position at the end of the string.
 */
 
+/* Comment:  
+
+*/
+
+// Define & set Global variables for this JS file
+
+/*
+var    temp
+;
+
+var validationLibrary = (function(){
+        
+        //Does the argument follow the 111-222-3333 pattern
+       var validatePhoneNumber = function (phoneNum) {
+            
+        }; //end validatePhoneNumber function
+
+        return {
+            checkPhoneNumber: function(phoneNum){
+                console.log("Phone Number: " + phoneNum);
+                console.log("Is the phone number valid? " + validatePhoneNumber (phoneNum));
+        },       
+})(); 
+ 
+// MAIN BODY    
+validationLibrary.checkPhoneNumber("123-456-7890");
+
+
+//One Global object exposed. 
+var SearchEngine = (function ( ) { 
+    //Private Method.
+    var luckyAlgo = function ( ){
+        //create one random number.
+        return Math.floor(Math.random()*11);
+    }
+    //Returning the object
+    return {
+        //privileged method.
+        getYourLuckyNumber : function ( ){
+            //Has access to its private method because of closure.
+            console.log(luckyAlgo());        
+        }
+    } 
+} ) ( );//Self executing method.
+
+SearchEngine.getYourLuckyNumber();
+*/
 
 
 
